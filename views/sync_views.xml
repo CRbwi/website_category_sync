@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_website_category_sync" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.website.category.sync</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                     <div class="col-12 col-lg-6 o_setting_box" id="website_category_sync_setting">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Inventory to Website Category Sync</span>
+                            <span class="fa fa-lg fa-sync text-muted"/>
+                            <div class="text-muted">
+                                Synchronize the product category hierarchy from Inventory to the Website.
+                            </div>
+                            <div class="mt8">
+                                <button name="action_sync_inventory_categories_to_website"
+                                        string="Sync Categories Now" type="object"
+                                        class="btn-primary"
+                                        help="Click to manually synchronize inventory categories to website categories."/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
