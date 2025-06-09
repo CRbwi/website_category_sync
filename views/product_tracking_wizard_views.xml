@@ -1,0 +1,83 @@
+<odoo>
+    <data>
+        <!-- Form View for the Wizard -->
+        <record id="view_product_set_no_tracking_wizard_form" model="ir.ui.view">
+            <field name="name">product.set.no.tracking.wizard.form</field>
+            <field name="model">product.set.no.tracking.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Establecer 'Sin Seguimiento' en Todos los Productos">
+                    <group>
+                        <field name="confirmation_text" nolabel="1"/>
+                    </group>
+                    
+                    <separator string="Diagnóstico de Productos (Opcional)"/>
+                    <group string="Herramienta de Diagnóstico">
+                        <p>Si el asistente no funciona como esperas, usa esta herramienta para comparar dos productos y encontrar diferencias:</p>
+                        <field name="product_id_tracked"/>
+                        <field name="product_id_not_tracked"/>
+                        <button name="action_diagnose_products"
+                                string="Comparar Productos"
+                                type="object" class="btn-secondary"
+                                invisible="product_id_tracked == False"/>
+                    </group>
+                    
+                    <footer>
+                        <button name="action_discover_type_values"
+                                string="Descubrir Valores de Type"
+                                type="object" class="btn-info"
+                                help="Descubre los valores válidos para el campo 'type' en tu versión de Odoo"/>
+                        <button name="action_investigate_is_storable"
+                                string="Investigar is_storable"
+                                type="object" class="btn-info"
+                                help="Investiga qué controla el campo is_storable que determina la visibilidad del checkbox"/>
+                        <button name="action_deep_is_storable_investigation"
+                                string="Investigación Profunda"
+                                type="object" class="btn-warning"
+                                help="Análisis profundo del código y lógica que controla is_storable"/>
+                        <button name="action_force_storable_experiment"
+                                string="Experimento Storable"
+                                type="object" class="btn-primary"
+                                confirm="¿Ejecutar experimentos para encontrar la configuración que hace is_storable=True?"
+                                help="Prueba diferentes configuraciones para hacer productos almacenables"/>
+                        <button name="action_make_products_storable"
+                                string="Hacer Productos Almacenables"
+                                type="object" class="btn-success"
+                                confirm="¿Intentar hacer todos los productos almacenables (is_storable=True)?"
+                                help="Intenta configurar productos para que el checkbox de tracking sea visible"/>
+                        <button name="action_confirm_set_no_tracking"
+                                string="Confirmar y Aplicar a Todos los Productos"
+                                type="object" class="btn-primary"
+                                confirm="¿Estás realmente seguro? Esta acción no se puede deshacer fácilmente para todos los productos."/>
+                        <button name="action_fix_tracking_comprehensive"
+                                string="Reparación Comprensiva"
+                                type="object" class="btn-warning"
+                                confirm="¿Ejecutar reparación comprensiva? Esto verificará y corregirá el tracking."
+                                help="Método alternativo que verifica y corrige solo el tracking"/>
+                        <button name="action_apply_complete_solution"
+                                string="🚀 SOLUCIÓN COMPLETA"
+                                type="object" class="btn-success"
+                                confirm="¿Estás seguro de aplicar la solución completa a TODOS los productos? Esto configurará is_storable=True y tracking='none' para todos."
+                                help="Aplica la solución final: fuerza is_storable=True y establece tracking='none' en todos los productos"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action to open the Wizard -->
+        <record id="action_product_set_no_tracking_wizard" model="ir.actions.act_window">
+            <field name="name">Establecer 'Sin Seguimiento' Globalmente</field>
+            <field name="res_model">product.set.no.tracking.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help">Este asistente te permite establecer la opción de seguimiento de inventario a "Sin seguimiento" para todos los productos en el sistema. Esto es útil si necesitas asegurar que ningún producto esté configurado para seguimiento por lotes o números de serie.</field>
+        </record>
+
+        <!-- Menu Item (e.g., under Inventory > Configuration > Products) -->
+        <menuitem id="menu_product_set_no_tracking_global"
+                  name="Establecer 'Sin Seguimiento' Global (Productos)"
+                  action="action_product_set_no_tracking_wizard"
+                  parent="stock.menu_stock_root" 
+                  sequence="999"/>
+    </data>
+</odoo>

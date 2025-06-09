@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_category_sync_manager,category.sync.manager,model_category_sync_manager,base.group_system,1,1,1,1
 access_product_public_category_sync,product.public.category.sync,model_product_public_category,base.group_user,1,1,1,1
+access_product_set_no_tracking_wizard_user,product.set.no.tracking.wizard.user,model_product_set_no_tracking_wizard,base.group_user,1,1,1,1
+access_product_set_no_tracking_wizard_manager,product.set.no.tracking.wizard.manager,model_product_set_no_tracking_wizard,stock.group_stock_manager,1,1,1,1
